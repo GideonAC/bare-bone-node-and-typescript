@@ -3,7 +3,9 @@ import axios from "axios";
 import { IncomingMessage, ServerResponse } from "http";
 //import pupeteer from "pupeteer";
 import  * as cheerio  from "cheerio";
-let description:any = ''
+
+
+let description:string = ''
 export const createServer = (req: IncomingMessage, res: ServerResponse) => {
     let datas = "";
 
@@ -11,7 +13,7 @@ export const createServer = (req: IncomingMessage, res: ServerResponse) => {
         datas += chunk.toString();
     })
     req.on("end", async()=>{
-          let work = JSON.parse(datas)
+          //let work = JSON.parse(datas)
         
          let url = JSON.parse(datas)
         try {
@@ -36,7 +38,7 @@ export const createServer = (req: IncomingMessage, res: ServerResponse) => {
                             image ? imageArray.push(image) : imageArray = [""]
                         }
                     }
-                    res.write(`The title is :${title}\n`)
+                    res.write(`The title is: ${title}\n`)
                     res.write(`description: ${description}\n`)
                     res.end(`imageArray: ${imageArray}`)
                 }else throw new Error('Invalid url')

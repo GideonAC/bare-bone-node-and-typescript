@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -37,7 +33,7 @@ const createServer = (req, res) => {
         datas += chunk.toString();
     });
     req.on("end", async () => {
-        let work = JSON.parse(datas);
+        //let work = JSON.parse(datas)
         let url = JSON.parse(datas);
         try {
             axios_1.default.get(url).then((response) => {
@@ -59,7 +55,7 @@ const createServer = (req, res) => {
                             image ? imageArray.push(image) : imageArray = [""];
                         }
                     }
-                    res.write(`The title is :${title}\n`);
+                    res.write(`The title is: ${title}\n`);
                     res.write(`description: ${description}\n`);
                     res.end(`imageArray: ${imageArray}`);
                 }
